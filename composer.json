@@ -1,0 +1,7 @@
+{
+    "name": "baulina/kleine",
+    "type": "project",
+    "require": {
+        "klein/klein": "^2.1"
+    }
+}
