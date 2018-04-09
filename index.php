@@ -2,15 +2,29 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 $klein = new \Klein\Klein();
-
+// До определения путей
 $klein->respond(function ($request, $response, $service) {
     $service->layout('views/layout.php');
+});
+
+$klein->app()->register('db', function () {
+    $params = require('db.php');
+    return new PDO(
+	$params['connection'], 
+	$params['username'], 
+	$params['password']);
 });
 
 $klein->respond(
 	'GET',
 	'/hello-world',
     require('pages/hello.php')
+);
+
+$klein->respond(
+	'GET',
+	'/hello-world/[:id]',
+    require('pages/user.php')
 );
 
 $klein->respond(
