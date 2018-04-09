@@ -1,4 +1,5 @@
 <?php
 return function ($request, $response, $service, $app) {
-    $service->render('views/hello.php');
+	$name='world';
+    $service->render('views/hello.php', ['name' => $name]);
 };
